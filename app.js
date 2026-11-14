@@ -2,6 +2,7 @@ require("express");
 const express = require("express");
 const mongoose = require("mongoose");
 const postModel = require("./model/post.model");
+const postRoute = require("./router/post.route");
 
 require("dotenv").config();
 
@@ -9,14 +10,7 @@ require("dotenv").config();
 const app = express();
 app.use(express.json());
 
-app.get("/", async (req, res) => {
-  try {
-    const posts = await postModel.find();
-    res.status(200).json(posts);
-  } catch (err) {
-    console.log(err);
-  }
-});
+app.use("/api/",postRoute)
 
 app.post("/post", async (req, res) => {
   const { title, body } = req.body;
