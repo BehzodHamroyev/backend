@@ -1,4 +1,3 @@
-const postModel = require("../model/post.model");
 const postService = require("../server/post.service");
 
 
